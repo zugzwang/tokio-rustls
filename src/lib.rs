@@ -289,7 +289,7 @@ where
                 }
                 Ok(None) => continue,
                 Err(err) => {
-                    return Poll::Ready(Err(io::Error::new(io::ErrorKind::InvalidInput, err)))
+                    return Poll::Ready(Err(io::Error::new(io::ErrorKind::InvalidInput, err.0)))
                 }
             }
         }
@@ -324,7 +324,7 @@ where
                     io: self.io,
                     // TODO(eliza): should this really return an `io::Error`?
                     // Probably not...
-                    error: io::Error::new(io::ErrorKind::Other, error),
+                    error: io::Error::new(io::ErrorKind::Other, error.0),
                 });
             }
         };
